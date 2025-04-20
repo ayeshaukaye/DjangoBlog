@@ -1,0 +1,31 @@
+{% extends "blogapp/index.html" %}
+
+{% block page_title %}
+        <h2 style="text-align:center"> Register here! </h2>
+{% endblock page_title %}
+
+
+{% block page_content %}
+    <p> 
+        Register to join our culinary community and savor the latest recipes, tips, and food adventures!
+    </p>
+
+    <form class="form-control w-50" method="post">
+        {% csrf_token %}
+
+        {{ form }}   
+        <!-- Displaying errors for each form field -->
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="alert alert-danger">
+                {% for error in field.errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %} 
+        
+        <button> Submit </button>
+    </form>
+
+{% endblock page_content %}

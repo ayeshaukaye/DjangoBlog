@@ -1,0 +1,22 @@
+uv venv
+.venv\Scripts\activate
+uv pip install Django
+django-admin startproject piggybank
+cd piggybank
+ls
+python manage.py runserver
+py manage.py startapp polls
+
+user: admin
+pass : admin
+
+python manage.py createsuperuser
+
+admin username/pass : shap/shap
+
+----regular users-----
+password: [girl1234, boy12345, momat1234]
+
+
+--------to redirect to home page---------
+return HttpResponseRedirect('/')
