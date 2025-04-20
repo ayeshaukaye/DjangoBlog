@@ -46,12 +46,19 @@
       </div>
     </div>
   </nav>
+
 {% block page_title %}
-        <h2 style="text-align:center"> Welcome to the Flavor Haven!  </h2>
+{% load static %}
+
+<div class="text-center my-4">
+  <img src="{% static 'images/logo.png' %}" alt="Flavor Haven Logo" class="img-fluid rounded" style="max-height: 100px;">
+</div>
 {% endblock page_title %}
 
 {% block page_content %}
     {% block posts %}
+    <div class='row'>
+    <div class='col-md-9'>
     <div class="card-deck row m-4">
         {% for post in posts %}
             <div class="col-md-3 mb-4">
@@ -74,7 +81,15 @@
                 </div>
             </div>
         {% endfor %}
+          </div>
+      </div>
+
+    <!-- Right Sidebar -->
+    <div class="col-md-3 mb-4">
+      {% include "partials/sidebar.html" %}
     </div>
+    </div>
+</div>
     {% endblock %}
 {% endblock page_content %}
 

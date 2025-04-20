@@ -5,6 +5,7 @@ from blogapp.forms import CommentForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
 
@@ -84,14 +85,15 @@ def blog_login(request):
     }
     return render(request, "blogapp/login.html", context)
 
-def blog_search(request):
+def blog_search(request):   
+        query = request.GET.get("query", '')
+        if query:
+            queryset = Post.objects.filter(
+                Q(title__icontains=query) | Q(categories__name__icontains=query)
+            ).distinct()
+        else:
+            queryset = Post.objects.none()
 
-    def get_queryset(self):
-        query = self.request.GET.get("query")
-        queryset = Post.objects.filter(
-            Q(name__icontains=query) | Q(categories__icontains=query)
-        )
-    
         context = {
             "posts": queryset
         }

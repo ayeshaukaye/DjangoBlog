@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blogapp'
+    'blogapp',
+    'rest_framework',
+    'api',
+    
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates/",
+            BASE_DIR / "templates",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -130,3 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/' #url for serving media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #where files are stored
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
