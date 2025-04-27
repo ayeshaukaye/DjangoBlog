@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from blogapp.models import Post, Comment
 from blogapp.forms import CommentForm
@@ -109,3 +109,15 @@ def blog_logout(request):
 @login_required(login_url="/login/")
 def blog_exclusive(request):
     return render(request, "blogapp/exclusive.html")
+
+
+@login_required
+def like_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect('blog_detail', pk=pk)
