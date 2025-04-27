@@ -23,6 +23,7 @@
                                     {{ category.name }},
                                 </a>
                             {% endfor %}
+                            | 👀 {{post.total_views}} views
                         </small>
 
                         <form action="{% url 'like_post' post.pk %}" method="POST">

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
-from blogapp.models import Post, Comment
+from blogapp.models import Post, Comment, PostView
 from blogapp.forms import CommentForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
@@ -37,8 +37,13 @@ def blog_detail(request, pk):
             )
             comment.save()
             return HttpResponseRedirect(request.path_info)
-        
+    
+    # to track user's viewed posts
+    if request.user.is_authenticated:
+        PostView.objects.create(user=request.user, post=post) 
+    
     comments = Comment.objects.filter(post=post)
+
     context = {
         "post": post,
         "comments": comments,
