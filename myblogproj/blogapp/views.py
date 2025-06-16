@@ -129,7 +129,7 @@ def like_post(request, pk):
 
     return redirect('blog_detail', pk=pk)
 
-@login_required
+@login_required(login_url="/login/")
 def blog_recommend(request):
     user = request.user
 
