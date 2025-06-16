@@ -1,3 +1,4 @@
+from email.policy import default
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from blogapp.models import Post, Comment, PostView
@@ -6,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from collections import defaultdict
 
 # Create your views here.
 
@@ -126,3 +128,60 @@ def like_post(request, pk):
         post.likes.add(request.user)
 
     return redirect('blog_detail', pk=pk)
+
+@login_required
+def blog_recommend(request):
+    user = request.user
+
+    liked_ids = set(user.post_likes.values_list('id', flat=True))
+    viewed_ids = set(PostView.objects.filter(user=user).values_list('post_id', flat=True))
+    interacted_ids = liked_ids.union(viewed_ids)
+
+    # print(interacted_ids)
+
+    user_posts = Post.objects.filter(id__in = interacted_ids)
+    user_cat_id = set(user_posts.values_list('categories__id', flat=True))
+    user_tag_id = set(user_posts.values_list('tags__id', flat=True))
+    
+    candidate_posts = Post.objects.exclude(id__in=interacted_ids)
+
+    scoredposts = defaultdict(int)
+
+    for post in candidate_posts.prefetch_related('categories', 'tags','likes'):
+        score = 0
+
+        # matching category
+        match_cat_id = set(post.categories.values_list('id', flat=True))
+        score += 2 * len(user_cat_id.intersection(match_cat_id))
+
+        # matching tag
+        match_tag_id = set(post.tags.values_list('id', flat=True))
+        score += 3 * len(user_tag_id.intersection(match_tag_id))
+
+        # liked by user who liked same post
+        match_like = post.likes.filter(
+            post_likes__in=liked_ids
+        ).distinct().count()
+        score += match_like * 1
+
+        # viewed by user who viewed same post
+        match_view = PostView.objects.filter(
+            post = post,
+            user__postview__post_id__in=viewed_ids
+        ).values('user').distinct().count()
+        score += match_view * 0.5
+
+        if score > 0:
+            scoredposts[post] = score
+
+    recommended = sorted(scoredposts.items(), key=lambda x: x[1], reverse=True)
+    top_posts = [post for post, score in recommended[:4]]
+
+    context = {
+            "posts": top_posts
+        }
+
+    return render(request, 'blogapp/for you.html', context)
+
+
+

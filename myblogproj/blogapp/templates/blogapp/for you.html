@@ -1,0 +1,43 @@
+{% extends "blogapp/index.html" %}
+
+{% block page_title %}
+        <h2 style="text-align:left" class="ps-5">  </h2>
+{% endblock page_title %}
+
+{% block page_content %}
+<h2 style="text-align:center"> Check out these recipes we handpicked, just for you! </h2>
+
+    <p style="padding: 0 40px;"> 
+<br>
+Welcome to our content-based and collaborative filtering system, where we recommend posts to you based on the posts you have already interacted with. In the future, we plan to expand to include ML techniques that would provide even better recommendations for you!
+<br>
+    </p>
+    <div class="card-deck row m-4">
+        {% for post in posts %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <!-- Assuming you have an image field named 'image' in your Post model -->
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" class="card-img-top img-fluid" alt="Post Image">
+                    {% else %}
+                        <!-- Fallback image if post doesn't have an image -->
+                        <img src="path/to/default-image.jpg" class="card-img-top img-fluid" alt="Default Image">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ post.body | slice:":65" }}...</p>
+                        <a href="{% url 'blog_detail' post.pk %}" class="btn btn-primary">Read it!</a>
+                    </div>
+                    <p class="ps-2">Categories:
+                        {% for category in post.categories.all %}
+                            <span class="badge bg-secondary">{{ category.name }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock page_content %}

@@ -14,6 +14,8 @@ urlpatterns =[
     path("logout/",views.blog_logout, name="blog_logout"), 
     path("exclusive/",views.blog_exclusive, name="blog_exclusive"), 
     path('post/<int:pk>/like/', views.like_post, name='like_post'),
+    path("for you/",views.blog_recommend, name="blog_recommend"), 
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

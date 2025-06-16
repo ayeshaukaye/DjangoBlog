@@ -20,7 +20,7 @@ class Post(models.Model):
     categories = models.ManyToManyField("Category", related_name="posts")
     image = models.ImageField(upload_to='post_images/', blank=True, null=True)
 
-    likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='post_likes', blank=True) #The related_name='post_likes' is crucial for reverse lookup. i.e. user.post_likes.all()
 
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
