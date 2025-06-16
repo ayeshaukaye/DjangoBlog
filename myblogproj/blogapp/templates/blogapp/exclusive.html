@@ -1,33 +1,46 @@
 {% extends "blogapp/index.html" %}
 
 {% block page_title %}
-<h5 style="text-align: center">Welcome, {{ user.username }} 👋</h2>
+<div class="text-center my-4" style="font-family: 'Javanese Text', serif; font-weight: bold;">
+<h5>Welcome, {{ user.username }} 👋</h2>
 <h6 style="text-align:center"> You have gained exclusive access to our </h6>
 <h2 style="text-align:center">Savory Secrets! </h2>
 <br>
+</div>
 {% endblock page_title %}
 
 {% block page_content %}
-    <h1>Kitchen Hacks You’ll Wish You Knew Sooner</h1>
-    <p>Every cook, whether beginner or expert, loves a good kitchen hack. These simple tricks will save you time, effort, and frustration in the kitchen. Here are a few must-know hacks to make your cooking experience smoother!</p>
-    
-    <h2>1. Peel Garlic in Seconds</h2>
-    <p>Tired of peeling garlic clove by clove? Place the garlic in a sealed jar or bowl, shake vigorously for a few seconds, and watch the skins slide right off!</p>
-    
-    <h2>2. Revive Stale Bread</h2>
-    <p>Don't toss that stale bread! Sprinkle it with a bit of water and pop it in the oven at 350°F (175°C) for 5-10 minutes. It’ll come out warm and fresh again.</p>
-    
-    <h2>3. Keep Herbs Fresh Longer</h2>
-    <p>Store fresh herbs like cilantro and parsley in a glass of water (like a bouquet) and cover them loosely with a plastic bag. This keeps them fresh for up to two weeks!</p>
-    
-    <h2>4. Soften Butter Quickly</h2>
-    <p>Forgot to take butter out of the fridge? Grate it using a cheese grater or microwave a glass and place it upside down over the butter to soften it in minutes.</p>
-    
-    <h2>5. Prevent Pots from Boiling Over</h2>
-    <p>Place a wooden spoon across the top of a boiling pot to prevent it from overflowing. The spoon breaks the surface tension and keeps the bubbles at bay!</p>
-    
-    <p>Try these hacks and make your time in the kitchen easier and more fun. Happy Cooking!</p>
+<div class="container mt-4"> <!--main content on left 75% of screen-->
+    <div class="row"> <!-- top margin, center content-->
+        <div class="col-md-9 mb-4 mt-3" style="font-family: 'Javanese Text', sans-serif">
+            <h1>Kitchen Hacks You’ll Wish You Knew Sooner</h1>
+            <p>Every cook, whether beginner or expert, loves a good kitchen hack. These simple tricks will save you time, effort, and frustration in the kitchen. Here are a few must-know hacks to make your cooking experience smoother!</p>
+            
+            <h2>1. Peel Garlic in Seconds</h2>
+            <p>Tired of peeling garlic clove by clove? Place the garlic in a sealed jar or bowl, shake vigorously for a few seconds, and watch the skins slide right off!</p>
+            
+            <h2>2. Revive Stale Bread</h2>
+            <p>Don't toss that stale bread! Sprinkle it with a bit of water and pop it in the oven at 350°F (175°C) for 5-10 minutes. It’ll come out warm and fresh again.</p>
+            
+            <h2>3. Keep Herbs Fresh Longer</h2>
+            <p>Store fresh herbs like cilantro and parsley in a glass of water (like a bouquet) and cover them loosely with a plastic bag. This keeps them fresh for up to two weeks!</p>
+            
+            <h2>4. Soften Butter Quickly</h2>
+            <p>Forgot to take butter out of the fridge? Grate it using a cheese grater or microwave a glass and place it upside down over the butter to soften it in minutes.</p>
+            
+            <h2>5. Prevent Pots from Boiling Over</h2>
+            <p>Place a wooden spoon across the top of a boiling pot to prevent it from overflowing. The spoon breaks the surface tension and keeps the bubbles at bay!</p>
+            
+            <p>Try these hacks and make your time in the kitchen easier and more fun. Happy Cooking!</p>
+        </div>
+   
 
-
+    
+        <!-- sidebar-->
+        <div class="col-md-3">
+            {% include "partials/sidebar.html" %}
+        </div>
+</div>
+</div>
 {% endblock page_content %}
 

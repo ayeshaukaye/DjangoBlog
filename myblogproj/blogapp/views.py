@@ -94,7 +94,7 @@ def blog_search(request):
         query = request.GET.get("query", '')
         if query:
             queryset = Post.objects.filter(
-                Q(title__icontains=query) | Q(categories__name__icontains=query)
+                Q(title__icontains=query) | Q(categories__name__icontains=query) |  Q(tags__name__icontains=query)
             ).distinct()
         else:
             queryset = Post.objects.none()
