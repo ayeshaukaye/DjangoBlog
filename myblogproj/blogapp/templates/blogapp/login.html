@@ -1,24 +1,27 @@
 {% extends "blogapp/index.html" %}
 
 {% block page_title %}
-        <h2 style="text-align:center"> Login here! </h2>
+        <h2 class="text-center my-4"> Login here </h2>
 {% endblock page_title %}
 
 
 {% block page_content %}
-    <p> 
-        Login to access the latest recipes, tips, and food adventures!
-    </p>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="card p-4 shadow-sm w-100">
+        <h4 class="mb-3 text-center">Welcome back to Curry & Crumbs!</h4>
+        <p class="text-muted text-center"> Login to access the latest tips and personalized recommendations!    </p>
 
-    <form class="form-control w-50" method="post">
+    <form method="post">
         {% csrf_token %}
-        {{ form }}       
-            <!-- Displaying errors for each form field -->
         {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag}}
+                {{ field }}      
+            <!-- Displaying errors for each form field -->
             {% if field.errors %}
-                <div class="alert alert-danger">
+                <div class="text-danger">
                     {% for error in field.errors %}
-                        <p class="text-danger">{{ error }}</p>
+                        {{ error }}<br>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -26,7 +29,11 @@
         {% if request.GET.next %}
                 <input type="hidden" name="next" value="{{ request.GET.next}}" />
         {% endif %}
-        <button> Submit </button>
-    </form>
+        <div class="text-center mt-3">
 
+        <button type="submit" class="btn btn-primary btn-lg"> Submit </button>
+        </div>
+    </form>
+    </div>
+</div>
 {% endblock page_content %}

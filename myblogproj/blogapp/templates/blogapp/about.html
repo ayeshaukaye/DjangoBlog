@@ -3,17 +3,23 @@
 
 
 {% block page_content %}
-<br>
-<h2 style="text-align:center"> About Us </h2>
 
-    <p> 
-<br>
-Welcome to <b>Curry & Crumbs</b>, where every bite tells a story, and every dish is a celebration of life’s most delicious moments! Here, we’re all about indulging in the magic of food — from vibrant flavors to heartwarming recipes that bring people together. Whether you're a seasoned chef or just starting your culinary journey, we believe cooking should always be an adventure. 
-<br>
-<br>
-At Curry & Crumbs, we’re passionate about sourcing the freshest ingredients, exploring bold tastes, and sharing mouthwatering creations that make you smile. Join us as we dive into a world of exciting recipes, kitchen tips, and a little sprinkle of food love. Because here, it's not just about eating — it's about savoring, sharing, and creating memories, one flavor at a time. 
-<br>
-<br>
-Let’s make every meal an experience. Welcome to your haven. Welcome to <b>Curry & Crumbs</b>.
-    </p>
+<div class="container">
+    <div class="card p-4 shadow-sm">
+        <br>
+        <h2 style="text-align:center"> About Us </h2>
+
+            <p> 
+        <br>
+        Welcome to <b>Curry & Crumbs</b>, where every bite tells a story, and every dish is a celebration of life’s most delicious moments! Here, we’re all about indulging in the magic of food — from vibrant flavors to heartwarming recipes that bring people together. Whether you're a seasoned chef or just starting your culinary journey, we believe cooking should always be an adventure. 
+        <br>
+        <br>
+        At Curry & Crumbs, we’re passionate about sourcing the freshest ingredients, exploring bold tastes, and sharing mouthwatering creations that make you smile. Join us as we dive into a world of exciting recipes, kitchen tips, and a little sprinkle of food love. Because here, it's not just about eating — it's about savoring, sharing, and creating memories, one flavor at a time. 
+        <br>
+        <br>
+        Let’s make every meal an experience. Welcome to your haven. Welcome to <b>Curry & Crumbs</b>.
+            </p>
+        <a href="{% url 'blog_index' %}" class="btn btn-outline-secondary mt-3">Explore Recipes</a>
+        </div>
+</div>
 {% endblock page_content %}
