@@ -15,8 +15,10 @@
         {% csrf_token %}
         {% for field in form %}
             <div class="mb-3">
+                <div class="pb-3">
                 {{ field.label_tag}}
-                {{ field }}      
+                {{ field }}   
+                </div>   
             <!-- Displaying errors for each form field -->
             {% if field.errors %}
                 <div class="text-danger">
