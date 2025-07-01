@@ -20,16 +20,21 @@ Built with content recommendation, user engagement tracking, and a simple API la
 ## Features
 
 - ### User Registration & Authentication
-    -  Uses Django's builtin `UserCreationForm` for registration
+    -  Uses Django's builtin `UserCreationForm` for registration.
     -  Implements Django's `AuthenticationForm` for secure credential handling.
     -  Certain pages that require authentication are protected using the `@login_required` decorator.
 
 - ### User Engagement Tracking using views and likes
     - Likes are a `ManyToManyField` on the `Post` model linked to `User`. Appears as a toggle on each post.
     - Views are recorded as instances of a `PostView` model.
+    - Users can also comment on posts.
+    - <img src="myblogproj/static/Screenshot_home.png" alt="SampleBlogPost">
+    - <img src="myblogproj/static/Screenshot_post.png" alt="SampleBlogPost">
+    - <img src="myblogproj/static/Screenshot_comments.png" alt="SampleBlogPost">
 
 - ### Search/Filter based on categories and tags
     - Implemented on post titles, tags and categories using Django `Q` objects for multi-field filtering.
+    - <img src="myblogproj/static/Screenshot_search.png" alt="SampleBlogPost">
   
 - ### Content Recommendation based on User Activity
     - Recommends posts using a weight-based scoring algorithm:
@@ -37,6 +42,7 @@ Built with content recommendation, user engagement tracking, and a simple API la
         - Also incorporates collaborative signals: if another user has similar activity, it gets a higher weight.
         - Top 4 posts with the highest cumulative scores are displayed as recommended.
     - **Requires prior user interaction for meaningful results.**
+    - <img src="myblogproj/static/Screenshot_recom.png" alt="SampleBlogPost">
   
 - ### RESTful API built using Django REST Framework, with the following endpoints:
 
@@ -47,7 +53,7 @@ Built with content recommendation, user engagement tracking, and a simple API la
     - `/api/<id>/comments/` – Submit and retrieve comments
 
     - `/api/categories/` – Get all categories
-
+    - <img src="myblogproj/static/Screenshot_api.png" alt="SampleBlogPost">
 
 ## Roadmap
 
